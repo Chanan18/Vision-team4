@@ -11,7 +11,7 @@
 #include "histogram.h"
 #include <iostream>
 
-void histogram::createHistogram256(FIBITMAP* gray_bitmap){
+void histogram::createHistogram256(FIBITMAP* gray_bitmap, string s){
 	int HEIGHT = FreeImage_GetHeight(gray_bitmap);
 	int WIDTH = FreeImage_GetWidth(gray_bitmap);
 	int totalPixels = 0;
@@ -51,7 +51,6 @@ void histogram::createHistogram256(FIBITMAP* gray_bitmap){
 	//
 	float alpha = 255 / float(totalPixels);
 	float equalized_histogram_array[256];
-	char output[30] = "equalized.bmp";
 
 	equalized_histogram_array[0] = histogram_array[0] * alpha;
 
@@ -72,9 +71,14 @@ void histogram::createHistogram256(FIBITMAP* gray_bitmap){
 			FreeImage_SetPixelColor(equalized_picture, i, j, &colorr);
 		}
 	}
+	const char* foo = s.c_str();
+	char equalized_output[30] = "equalized_";
+	strcat(equalized_output, foo);
 
-	if (FreeImage_Save(FIF_BMP, equalized_picture, "equalized_picture.bmp", 0)){
-		cout << "Succesfully saved lolololol!!!!!!" << endl;
+	std::cout << equalized_output << std::endl;
+
+	if (FreeImage_Save(FIF_BMP, equalized_picture, equalized_output, 0)){
+		cout << "Succesfully saved equalized picture" << endl;
 	}
 }
 

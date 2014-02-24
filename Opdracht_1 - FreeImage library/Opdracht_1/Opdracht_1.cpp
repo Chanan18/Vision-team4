@@ -32,9 +32,6 @@ int main(int argc, char* argv[])
 		exit(1);
 	}
 
-	//FIBITMAP* red_channel_bitmap = FreeImage_Clone(bitmap);
-	//red_channel_bitmap
-
 	FIBITMAP* gray_bitmap = FreeImage_Clone(bitmap);
 	gray_bitmap = c.convertToGray(gray_bitmap, color);
 	
@@ -59,36 +56,64 @@ int main(int argc, char* argv[])
 	FIBITMAP* maximum_bitmap = FreeImage_Clone(salt_and_pepper_bitmap);
 	maximum_bitmap = f.maximumFilter(maximum_bitmap, color);
 
-	char output[30] = "grey_";
-	strcat(output, s);
-	std::cout << output << std::endl;
-	//Image.WriteToFile(output);
-	if (FreeImage_Save(FIF_BMP, gray_bitmap, output, 0)){
-		cout << "Succesfully saved!!!!!!" << endl;
-	}
-	if (FreeImage_Save(FIF_BMP, red_bitmap, "redChannel.bmp", 0)){
-		cout << "Succesfully saved!!!!!!" << endl;
-	}
-	if (FreeImage_Save(FIF_BMP, green_bitmap, "greenChannel.bmp", 0)){
-		cout << "Succesfully saved!!!!!!" << endl;
-	}
-	if (FreeImage_Save(FIF_BMP, blue_bitmap, "blueChannel.bmp", 0)){
-		cout << "Succesfully saved!!!!!!" << endl;
-	}
-	if (FreeImage_Save(FIF_BMP, salt_and_pepper_bitmap, "SaltAndPepper.bmp", 0)){
-		cout << "SALT AND PEPPA" << endl;
-	}
-	if (FreeImage_Save(FIF_BMP, median_bitmap, "median.bmp", 0)){
-		cout << "MEDIAANA" << endl;
-	}
-	if (FreeImage_Save(FIF_BMP, minimum_bitmap, "minimum.bmp", 0)){
-		cout << "MINIIIIIIIIII" << endl;
-	}
-	if (FreeImage_Save(FIF_BMP, maximum_bitmap, "maximum.bmp", 0)){
-		cout << "MAXIIIIIIIIII" << endl;
-	}
+	char grey_output[30] = "grey_";
+	strcat(grey_output, s);
+	std::cout << grey_output << std::endl;
 
-	h.createHistogram256(gray_bitmap);
+	if (FreeImage_Save(FIF_BMP, gray_bitmap, grey_output, 0))
+		cout << "Succesfully saved gray image" << endl;
+
+	char red_channel_output[30] = "R_";
+	strcat(red_channel_output, s);
+	std::cout << red_channel_output << std::endl;
+
+	if (FreeImage_Save(FIF_BMP, red_bitmap, red_channel_output, 0))
+		cout << "Succesfully saved red channel image" << endl;
+
+	char green_channel_output[30] = "G_";
+	strcat(green_channel_output, s);
+	std::cout << green_channel_output << std::endl;
+
+	if (FreeImage_Save(FIF_BMP, green_bitmap, "greenChannel.bmp", 0))
+		cout << "Succesfully saved green channel image" << endl;
+
+	char blue_channel_output[30] = "B_";
+	strcat(blue_channel_output, s);
+	std::cout << blue_channel_output << std::endl;
+
+	if (FreeImage_Save(FIF_BMP, blue_bitmap, blue_channel_output, 0))
+		cout << "Succesfully saved blue channel image" << endl;
+
+	char saltAndPepper_output[30] = "noise_";
+	strcat(saltAndPepper_output, s);
+	std::cout << saltAndPepper_output << std::endl;
+
+	if (FreeImage_Save(FIF_BMP, salt_and_pepper_bitmap, saltAndPepper_output, 0))
+		cout << "Succesfully saved salt and pepper image" << endl;
+
+	char median_filter_output[30] = "median_";
+	strcat(median_filter_output, s);
+	std::cout << median_filter_output << std::endl;
+
+	if (FreeImage_Save(FIF_BMP, median_bitmap, median_filter_output, 0))
+		cout << "Succesfully saved median filter image" << endl;
+
+	char min_filter_output[30] = "min_";
+	strcat(min_filter_output, s);
+	std::cout << min_filter_output << std::endl;
+
+	if (FreeImage_Save(FIF_BMP, minimum_bitmap, min_filter_output, 0))
+		cout << "Succesfully saved minimum filter image" << endl;
+
+	char max_filter_output[30] = "max_";
+	strcat(max_filter_output, s);
+	std::cout << max_filter_output << std::endl;
+
+	if (FreeImage_Save(FIF_BMP, maximum_bitmap, max_filter_output, 0))
+		cout << "Succesfully saved maximum filter image" << endl;
+
+
+	h.createHistogram256(gray_bitmap, s);
 	h.createHistogram10(gray_bitmap);
 
 	h.createHistogram10Red(red_bitmap);
