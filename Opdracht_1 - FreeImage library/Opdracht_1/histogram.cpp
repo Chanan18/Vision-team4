@@ -80,6 +80,8 @@ void histogram::createHistogram256(FIBITMAP* gray_bitmap, string s){
 	if (FreeImage_Save(FIF_BMP, equalized_picture, equalized_output, 0)){
 		cout << "Succesfully saved equalized picture" << endl;
 	}
+
+	FreeImage_Unload(equalized_picture);
 }
 
 void histogram::createHistogram10(FIBITMAP* gray_bitmap){

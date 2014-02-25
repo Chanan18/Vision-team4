@@ -74,7 +74,7 @@ int main(int argc, char* argv[])
 	strcat(green_channel_output, s);
 	std::cout << green_channel_output << std::endl;
 
-	if (FreeImage_Save(FIF_BMP, green_bitmap, "greenChannel.bmp", 0))
+	if (FreeImage_Save(FIF_BMP, green_bitmap, green_channel_output, 0))
 		cout << "Succesfully saved green channel image" << endl;
 
 	char blue_channel_output[30] = "B_";
@@ -119,6 +119,15 @@ int main(int argc, char* argv[])
 	h.createHistogram10Red(red_bitmap);
 	h.createHistogram10Green(green_bitmap);
 	h.createHistogram10Blue(blue_bitmap);
+
+	FreeImage_Unload(gray_bitmap);
+	FreeImage_Unload(red_bitmap);
+	FreeImage_Unload(green_bitmap);
+	FreeImage_Unload(blue_bitmap);
+	FreeImage_Unload(salt_and_pepper_bitmap);
+	FreeImage_Unload(median_bitmap);
+	FreeImage_Unload(minimum_bitmap);
+	FreeImage_Unload(maximum_bitmap);
 
 	std::cin.get();
 	return 0;
