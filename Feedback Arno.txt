@@ -1,0 +1,21 @@
+Meetrapport
+==================
+De bedoeling van een meetrapport is dat een klein experiment wordt beschreven en de resultaten worden getoond. Jullie hebben ervoor gekozen om 1 groot meetrapport te maken. Dit is niet de bedoeling. Zo gaat het op een verslag lijken, wat nu net niet de bedoeling is.
+
+Bij de hypothese schrijven jullie allerlei zaken die niet zijn te testen. In deze sectie wil ik graag zien wat jullie verwachten, bijvoorbeeld: "Algorithme 1 is minstens 2 keer zo snel als algorithme 2" of "Bij plaatjes die ruis bevatten zal het mediaan filter minstens 80% van de ruis weghalen". Dit zijn hypotheses die je dan gaat bewijzen. In de werkwijze ga je daarna beschrijven hoe je dit wilt aanpakken. Hoe ga je het experiment doen? Dit doe je aan de hand van het aangeven welke input je hebt gekozen en waarom. Bovendien geef je daar aan wat je gaat meten en hoe je deze meetgegevens omzet naar resultaten (bijvoorbeeld dat je een gemiddelde over meerdere runs van je programma gaat nemen).
+
+De resultaten zien er wel goed uit trouwens!
+
+
+
+Code
+====================
+Jullie maken zoals heel veel anderen gebruik van de FreeImage library voor het laden en saven van images. Dat is geen probleem. Echter, julie gebruiken ook de interne opslag van deze library. Het is de bedoeling dat je je eigen opslag gaat regelen zodat je daar volledige controle over hebt.
+
+Jullie hebben wel een klasse histogram gemaakt, maar dat is alleen maar een collectie van functies. Er wordt niets opgeslagen. Bovendien staat er veel code door elkaar heen. Zo staat equalization code door code heen voor het creeeren van het histogram. Ook zijn er aparte functies voor een 256 bins histogram en een 10 bins histogram. Wat als je nu eens een ander bin aantal zou willen? Dan moet je weer een hele nieuwe functie gaan maken. Dit is niet handig voor de herbruikbaarheid.
+
+De manier waarop jullie salt and pepper toevoegen geeft helemaal niets aan over het percentage. Stel ik wil 10% noise toevoegen, hoe kan je dat doen? Het kan ook nog voorkomen dat er aan 1 pixel meerdere keren noise wordt toegevoegd. Dit is niet de bedoeling.
+
+Bij het filter kopieeren jullie heel veel code. Misschien is het handiger om hier wat meer structuur op aan te brengen. Bovendien werkt de code alleen voor 3x3 maskers, en is dit niet in te stellen.
+
+Probeer ook iets meer commentaar erbij te zetten zodat het wat duidelijker is wat er gebeurd.
