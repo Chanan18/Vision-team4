@@ -19,3 +19,10 @@ De manier waarop jullie salt and pepper toevoegen geeft helemaal niets aan over 
 Bij het filter kopieeren jullie heel veel code. Misschien is het handiger om hier wat meer structuur op aan te brengen. Bovendien werkt de code alleen voor 3x3 maskers, en is dit niet in te stellen.
 
 Probeer ook iets meer commentaar erbij te zetten zodat het wat duidelijker is wat er gebeurd.
+
+
+
+Algemeen
+====================
+
+Probeer de files ook iets meer te structuren. Ik moet nu heel erg zoeken naar het meetrapport.
