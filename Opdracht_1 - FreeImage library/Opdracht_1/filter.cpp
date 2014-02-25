@@ -150,9 +150,9 @@ FIBITMAP* filter::minimumFilter(FIBITMAP* bitmap, RGBQUAD& color){
 				window[index][2] = temp[2];
 			}
 			//window[4][0] + window[4][1] + window[4][2] is wat je moet hebben.
-			color.rgbBlue = window[1][0];
-			color.rgbGreen = window[1][1];
-			color.rgbRed = window[1][2];
+			color.rgbBlue = window[0][0];
+			color.rgbGreen = window[0][1];
+			color.rgbRed = window[0][2];
 			FreeImage_SetPixelColor(filtered, i, j, &color);
 		}
 	}
@@ -224,9 +224,9 @@ FIBITMAP* filter::maximumFilter(FIBITMAP* bitmap, RGBQUAD& color){
 				window[index][2] = temp[2];
 			}
 			//window[4][0] + window[4][1] + window[4][2] is wat je moet hebben.
-			color.rgbBlue = window[7][0];
-			color.rgbGreen = window[7][1];
-			color.rgbRed = window[7][2];
+			color.rgbBlue = window[8][0];
+			color.rgbGreen = window[8][1];
+			color.rgbRed = window[8][2];
 			FreeImage_SetPixelColor(filtered, i, j, &color);
 		}
 	}
