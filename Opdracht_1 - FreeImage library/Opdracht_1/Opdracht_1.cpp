@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include <fstream>
 #include <iostream>
+#include <istream>
 #include <string>
 #include "FreeImage.h"
 #include "converter.h"
@@ -45,7 +46,10 @@ int main(int argc, char* argv[])
 	blue_bitmap = c.convertToBlue(blue_bitmap, color);
 
 	FIBITMAP* salt_and_pepper_bitmap = FreeImage_Clone(bitmap);
-	salt_and_pepper_bitmap = n.saltAndPepper(salt_and_pepper_bitmap, color);
+	cout << "Enter % salt&pepper noise:" << endl;
+	int salt;
+	std::cin >> salt;
+	salt_and_pepper_bitmap = n.saltAndPepper(salt_and_pepper_bitmap, color, salt);
 
 	FIBITMAP* median_bitmap = FreeImage_Clone(salt_and_pepper_bitmap);
 	median_bitmap = f.medianFilter(median_bitmap, color);

@@ -17,6 +17,6 @@ public:
 	//! This method has parameters bitmap (type: FIBITMAP) and color (type: RGBQUAD) and returns a FIBITMAP object
 	//
 	//! This method will add Salt and Pepper noise on the FIBITMAP object and returns it
-	FIBITMAP* saltAndPepper(FIBITMAP* bitmap, RGBQUAD& color);
+	FIBITMAP* saltAndPepper(FIBITMAP* bitmap, RGBQUAD& color, int salt);
 };
 

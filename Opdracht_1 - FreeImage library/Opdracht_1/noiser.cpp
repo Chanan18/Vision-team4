@@ -5,15 +5,15 @@
 #include <iostream>
 
 
-FIBITMAP* noiser::saltAndPepper(FIBITMAP* bitmap, RGBQUAD& color) {
+FIBITMAP* noiser::saltAndPepper(FIBITMAP* bitmap, RGBQUAD& color, int salt) {
 	int HEIGHT = FreeImage_GetHeight(bitmap);
 	int WIDTH = FreeImage_GetWidth(bitmap);
 	srand(time(0));
 	int i;
 	int j;
 	int condition = 0;
-	int moduloshiznit = (HEIGHT * WIDTH) / 100;
-	while (condition <= ((HEIGHT * WIDTH) / 128))  {
+	int salt_pepper = int(salt);
+	while (condition <= (((HEIGHT * WIDTH) / 100)*salt_pepper))  {
 		i = rand() % WIDTH;
 		j = rand() % HEIGHT;
 		FreeImage_GetPixelColor(bitmap, i, j, &color);
