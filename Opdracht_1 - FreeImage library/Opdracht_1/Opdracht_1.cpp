@@ -116,6 +116,10 @@ int main(int argc, char* argv[])
 	if (FreeImage_Save(FIF_BMP, maximum_bitmap, max_filter_output, 0))
 		cout << "Succesfully saved maximum filter image" << endl;
 
+	int binnr;
+	std::cout << "Please select the binnumber for the histogram" << std::endl;
+	std::cin >> binnr;
+	h.createHistogramGrey(gray_bitmap, binnr);
 
 	h.createHistogram256(gray_bitmap, s);
 	h.createHistogram10(gray_bitmap);
@@ -132,7 +136,8 @@ int main(int argc, char* argv[])
 	FreeImage_Unload(median_bitmap);
 	FreeImage_Unload(minimum_bitmap);
 	FreeImage_Unload(maximum_bitmap);
-
+	int what;
+	std::cin >> what;
 	std::cin.get();
 	return 0;
 }

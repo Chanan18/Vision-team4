@@ -30,5 +30,7 @@ public:
 	//! This method has parameter bitmap (type: FIBITMAP) and creates a histogram with binnumber 10 (based on blue channel)
 	void createHistogram10Blue(FIBITMAP* gray_bitmap);
 
+	void createHistogramGrey(FIBITMAP* bitmap, int binnr);
+
 
 };

@@ -84,6 +84,47 @@ void histogram::createHistogram256(FIBITMAP* gray_bitmap, string s){
 	FreeImage_Unload(equalized_picture);
 }
 
+void histogram::createHistogramGrey(FIBITMAP* bitmap, int binnr){
+
+	if (remove("histogram.csv") != 0)
+		perror("Error deleting file");
+	else
+		puts("File successfully deleted");
+
+	int HEIGHT = FreeImage_GetHeight(bitmap);
+	int WIDTH = FreeImage_GetWidth(bitmap);
+	int totalPixels = 0;
+	float normalize;
+	RGBQUAD color;
+	ofstream histogramFile;
+	int* histogram_array;
+	histogram_array = (int *)malloc(sizeof(int)* binnr);
+	histogramFile.open("histogram.csv", ios::out);
+
+	for (int i = 0; i < binnr; i++){
+		histogram_array[i] = 0;
+	}
+
+	for (int i = 0; i < WIDTH; i++) {
+		//cout << WIDTH << endl;
+		for (int j = 0; j < HEIGHT; j++) {
+			//cout << HEIGHT << endl;
+			FreeImage_GetPixelColor(bitmap, i, j, &color);
+			histogram_array[(int)(color.rgbRed % binnr)] ++;
+		}
+	}
+
+	for (int i = 0; i < binnr; i++)
+		totalPixels += histogram_array[i];
+
+	for (int i = 0; i < binnr; i++){
+		normalize = histogram_array[i] / float(totalPixels);
+		histogramFile << i << "," << normalize << endl;
+	}
+
+	free(histogram_array);
+}
+
 void histogram::createHistogram10(FIBITMAP* gray_bitmap){
 	int HEIGHT = FreeImage_GetHeight(gray_bitmap);
 	int WIDTH = FreeImage_GetWidth(gray_bitmap);
