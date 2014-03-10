@@ -8,11 +8,10 @@
 class Histogram{
 private:
 	BaseTimer* bt;
+	std::string outputLocation = "../Histogrammen/";
 public:
 	Histogram();
 	~Histogram();
-	void CreateHistogramY(Image &sourceImage);
-	void CreateHistogramX(Image &sourceImage);
 	void CreateNormalizedHistogramCOLOR(Image &sourceImage, int binnr);
 	void CreateNormalizedHistogramGRAY(Image &sourceImage, int binnr);
 };

@@ -16,9 +16,9 @@ class noiser
 {
 public:
 
-	//! This method has parameters bitmap (type: FIBITMAP) and color (type: RGBQUAD) and returns a FIBITMAP object
+	//! This method has parameters an source image, an destination image and a int which represent percentage of salt&pepper-noise
 	//
-	//! This method will add Salt and Pepper noise on the FIBITMAP object and returns it
+	//! This method will add the given percentage salt&pepper noise on the destination image
 	void saltAndPepper(Image &sourceImage, Image &destinationImage, int salt);
 };
 

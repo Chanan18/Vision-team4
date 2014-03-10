@@ -4,7 +4,11 @@
 #include <string>
 #include "Image.h"
 #include "GrayScale.h"
+#include "ColorChannelToImage.h"
 #include "Histogram.h"
+#include "Equalize.h"
+#include "Filter.h"
+#include "noiser.h"
 
 int main(int argc, char** argv) {
 	/*=========================     Program parameters     =========================*/
@@ -16,7 +20,9 @@ int main(int argc, char** argv) {
 //	std::string inputName = "TestImage.bmp";
 //	std::string inputName = "Busjes.jpg";
 //	std::string inputName = "BusjesGroot.jpg";
-	std::string inputName = "Waterfall.jpg";
+	std::string inputName = "meepo.bmp";
+//	std::string inputName = "Waterfall.jpg";
+
 	
 
 	bool grayOn = true;
@@ -39,19 +45,67 @@ int main(int argc, char** argv) {
 
 	//Filter image with grayscale
 	if(grayOn) {
+
+		//Create an Image object called grayImage (which is a copy of originalImage) and converts to gray values
 		Image grayImage(originalImage);
 		GrayScale gray;
 		gray.CreateGrayScaleImage(originalImage, grayImage);
-		grayImage.SaveImageToFile("GREY_");
+		grayImage.SaveImageToFile("grey_");
 		std::cout << std::endl;
 
+		//Creates a Histogram object called hist and makes a histogram from an image and binnumbers 
 		Histogram hist;
-		hist.CreateNormalizedHistogramCOLOR(originalImage, 50);
-		hist.CreateNormalizedHistogramGRAY(grayImage, 79);
+		hist.CreateNormalizedHistogramGRAY(originalImage, 10);
+		hist.CreateNormalizedHistogramGRAY(originalImage, 256);
+		hist.CreateNormalizedHistogramCOLOR(grayImage, 10);
+
+		//Creates an Image object called saltAndPepperImage (which is a copy of grayImage) and add salt&pepper-noise
+		Image saltAndPepperImage(grayImage);
+		noiser noise;
+		noise.saltAndPepper(grayImage, saltAndPepperImage, 10);
+		saltAndPepperImage.SaveImageToFile("noise_");
+
+		//Creates an Image object called equalizedImage (which is a copy of grayImage) and will equalize the grayImage
+		Image equalizedImage(grayImage);
+		Equalize equalized;
+		equalized.CreateEqualizedImage(grayImage, equalizedImage);
+		equalizedImage.SaveImageToFile("equalized_");
+
+		//Creates an Image object called redChannelImage (which is a copy of originalImage) and set blue and green channel to 0 for every pixel (red channel stays untouched)
+		Image redChannelImage(originalImage);
+		ColorChannelToImage Channel;
+		Channel.CreateRedChannelImage(originalImage, redChannelImage);
+		redChannelImage.SaveImageToFile("R_");
+
+		//Creates an Image object called greenChannelImage (which is a copy of originalImage) and set blue and red channel to 0 for every pixel (green channel stays untouched)
+		Image greenChannelImage(originalImage);
+		Channel.CreateGreenChannelImage(originalImage, greenChannelImage);
+		greenChannelImage.SaveImageToFile("G_");
+		
+		//Creates an Image object called blueChannelImage (which is a copy of originalImage) and set red and green channel to 0 for every pixel (blue channel stays untouched)
+		Image blueChannelImage(originalImage);
+		Channel.CreateBlueChannelImage(originalImage, blueChannelImage);
+		blueChannelImage.SaveImageToFile("B_");
+
+		//Creates an Image object called medianFilterImage (which is a copy of saltAndPepperImage) and apply the median filter
+		Image medianFilterImage(originalImage);
+		Filter filter;
+		filter.CreateMedianFilterImage(saltAndPepperImage, medianFilterImage, 3);
+		medianFilterImage.SaveImageToFile("median_");
+
+		//Creates an Image object called medianFilterImage (which is a copy of saltAndPepperImage) and apply the minimum filter
+		Image minimumFilterImage(originalImage);
+		filter.CreateMinimumFilterImage(saltAndPepperImage, minimumFilterImage, 3);
+		minimumFilterImage.SaveImageToFile("minimum_");
+
+		//Creates an Image object called medianFilterImage (which is a copy of saltAndPepperImage) and apply the maximum filter
+		Image maximumFilterImage(originalImage);
+		filter.CreateMaximumFilterImage(saltAndPepperImage, maximumFilterImage, 3);
+		maximumFilterImage.SaveImageToFile("maximum_");
 	}
 
 	//Save the original image
-	originalImage.SaveImageToFile("ORIGINAL_");
+	originalImage.SaveImageToFile("original_");
 	std::cout << std::endl;
 
 	//End program
