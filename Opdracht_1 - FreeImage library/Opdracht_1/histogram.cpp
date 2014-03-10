@@ -99,7 +99,7 @@ void histogram::createHistogramGrey(FIBITMAP* bitmap, int binnr){
 	ofstream histogramFile;
 	int* histogram_array;
 	histogram_array = (int *)malloc(sizeof(int)* binnr);
-	histogramFile.open("histogram.csv", ios::out);
+	histogramFile.open("Grey_Histogram.csv", ios::out);
 
 	for (int i = 0; i < binnr; i++){
 		histogram_array[i] = 0;
@@ -119,7 +119,7 @@ void histogram::createHistogramGrey(FIBITMAP* bitmap, int binnr){
 
 	for (int i = 0; i < binnr; i++){
 		normalize = histogram_array[i] / float(totalPixels);
-		histogramFile << i << "," << normalize << endl;
+		histogramFile << i << " , " << normalize << endl;
 	}
 
 	free(histogram_array);
