@@ -109,9 +109,9 @@ int main(int argc, char** argv) {
 		c.CreateK_MeansGrayImage(originalImage, clusteredGrayImage, 4, 1);
 		clusteredGrayImage.SaveImageToFile("clusterGRAY_");
 
-		//Image clusteredColorImage(originalImage);
-		//c.CreateK_MeansColorImage(originalImage, clusteredColorImage, 4, 1);
-		//clusteredColorImage.SaveImageToFile("clusterCOLOR_")
+		Image clusteredColorImage(originalImage);
+		c.CreateK_MeansColorImage(originalImage, clusteredColorImage, 4, 25);
+		clusteredColorImage.SaveImageToFile("clusterCOLOR_");
 	}
 
 	//Save the original image

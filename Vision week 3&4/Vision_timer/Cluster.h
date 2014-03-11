@@ -11,6 +11,7 @@ public:
 	Cluster();
 	~Cluster();
 	void CreateK_MeansGrayImage(Image &sourceImage, Image &destinationImage, int clusters, int maxIterations);
+	void CreateK_MeansColorImage(Image &sourceImage, Image &destinationImage, int clusters, int maxIterations);
 };
 
 #endif
