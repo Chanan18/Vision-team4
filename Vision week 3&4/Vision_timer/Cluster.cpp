@@ -254,7 +254,10 @@ void Cluster::CreateK_MeansColorImage(Image &sourceImage, Image &destinationImag
 				meanArrayRed[x] = meanArrayRed[x] / amountArray[x];
 				meanArrayGreen[x] = meanArrayGreen[x] / amountArray[x];
 				meanArrayBlue[x] = meanArrayBlue[x] / amountArray[x];
-			}
+				cout << "Red value: " << meanArrayRed[x] << endl;
+				cout << "Green value: " << meanArrayGreen[x] << endl;
+				cout << "Blue value: " << meanArrayBlue[x] << endl;
+ 			}
 		}
 
 		//Setting the mean to all the correct pixels
@@ -267,19 +270,30 @@ void Cluster::CreateK_MeansColorImage(Image &sourceImage, Image &destinationImag
 		}
 
 		for (int k = 0; k < zones; k++) {
-			cout << "Condition " << condition << " will change: " << endl;
-			cout << "Clustercenter " << k << " was: " << pixelArrayColor[k][0] << endl;
-			cout << "Clustercenter " << k << " was: " << pixelArrayColor[k][1] << endl;
-			cout << "Clustercenter " << k << " was: " << pixelArrayColor[k][2] << endl;
+			//cout << "Condition " << condition << " will change: " << endl;
+			//cout << "Clustercenter " << k << " was: " << pixelArrayColor[k][0] << endl;
+			//cout << "Clustercenter " << k << " was: " << pixelArrayColor[k][1] << endl;
+			//cout << "Clustercenter " << k << " was: " << pixelArrayColor[k][2] << endl;
 			pixelArrayColor[k][0] = meanArrayRed[k];
 			pixelArrayColor[k][1] = meanArrayGreen[k];
 			pixelArrayColor[k][2] = meanArrayBlue[k];
-			cout << "Clustercenter " << k << " will be: " << pixelArrayColor[k][0] << endl;
-			cout << "Clustercenter " << k << " will be: " << pixelArrayColor[k][1] << endl;
-			cout << "Clustercenter " << k << " will be: " << pixelArrayColor[k][2] << endl;
+			//cout << "Clustercenter " << k << " will be: " << pixelArrayColor[k][0] << endl;
+			//cout << "Clustercenter " << k << " will be: " << pixelArrayColor[k][1] << endl;
+			//cout << "Clustercenter " << k << " will be: " << pixelArrayColor[k][2] << endl;
+		}
+		for (int i = 0; i < zones; i++) {
+			meanArrayRed[i] = 0;
+			meanArrayGreen[i] = 0;
+			meanArrayBlue[i] = 0;
+			amountArray[i] = 0;
 		}
 
 		condition++;
+	}
+	for (int k = 0; k < zones; k++) {
+		cout << "Clustercenter " << k << " was: " << pixelArrayColor[k][0] << endl;
+		cout << "Clustercenter " << k << " was: " << pixelArrayColor[k][1] << endl;
+		cout << "Clustercenter " << k << " was: " << pixelArrayColor[k][2] << endl;
 	}
 	free(meanArrayRed);
 	free(meanArrayGreen);

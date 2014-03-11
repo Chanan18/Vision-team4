@@ -106,11 +106,11 @@ int main(int argc, char** argv) {
 
 		Image clusteredGrayImage(originalImage);
 		Cluster c;
-		c.CreateK_MeansGrayImage(originalImage, clusteredGrayImage, 4, 1);
+		c.CreateK_MeansGrayImage(originalImage, clusteredGrayImage, 2, 1);
 		clusteredGrayImage.SaveImageToFile("clusterGRAY_");
 
 		Image clusteredColorImage(originalImage);
-		c.CreateK_MeansColorImage(originalImage, clusteredColorImage, 4, 25);
+		c.CreateK_MeansColorImage(originalImage, clusteredColorImage, 5, 25);
 		clusteredColorImage.SaveImageToFile("clusterCOLOR_");
 	}
 
