@@ -24,28 +24,13 @@
     <ClCompile Include="GrayScale.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BinaryYellow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CannyEdge.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Equalize.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Histogram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LineDetection.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="noiser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SobelFilter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Threshold.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ColorChannelToImage.cpp">
@@ -62,28 +47,13 @@
     <ClInclude Include="GrayScale.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BinaryYellow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CannyEdge.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Equalize.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Histogram.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LineDetection.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="noiser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SobelFilter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Threshold.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ColorChannelToImage.h">

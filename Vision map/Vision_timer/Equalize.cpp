@@ -3,17 +3,20 @@
 //#define greenPixel 16
 //#define bluePixel 8
 //#define alphaPixel 0
+
 using namespace std;
+
+// Default constructor
 Equalize::Equalize() {
 	bt = new BaseTimer();
 }
 
-
+// Destructor
 Equalize::~Equalize() {
 	delete bt;
 }
 
-//This method creates an image with equalized grayvalues. (removes foggyness on pictures)
+// This method creates an image with equalized grayvalues. (removes foggyness on pictures)
 void Equalize::CreateEqualizedImage(Image &sourceImage, Image &destinationImage) {
 	bt->reset();
 	bt->start();
@@ -27,14 +30,14 @@ void Equalize::CreateEqualizedImage(Image &sourceImage, Image &destinationImage)
 	float equalized_histogram_array[256];
 	float histogram_array[256];
 
-	//The next three for lusses are the creation of the histogram_to_be_equalized.
+	// The following for lus we set all values to 0 in the array
 	for (int i = 0; i < 256; i++){
 		histogram_array[i] = 0;
 	}
+
+	// The next 2 for lusses we will get all the red pixel values (which will be an value from 0 to 255) and increment the value in the array on element red pixel value
 	for (int i = 0; i < width; i++) {
-		//cout << WIDTH << endl;
 		for (int j = 0; j < height; j++) {
-			//cout << HEIGHT << endl;
 			pixelValue = sourceImage.GetPixelRed(i, j);
 			histogram_array[pixelValue] ++;
 		}
@@ -42,7 +45,7 @@ void Equalize::CreateEqualizedImage(Image &sourceImage, Image &destinationImage)
 
 	equalized_histogram_array[0] = histogram_array[0] * alpha;
 
-	//This is where the equalization of the normal values will be done.
+	// Creates an equalized array from normal histogram
 	for (int i = 1; i < 256; i++){
 		equalized_histogram_array[i] = equalized_histogram_array[i - 1] + (histogram_array[i] * alpha);
 	}
@@ -50,7 +53,7 @@ void Equalize::CreateEqualizedImage(Image &sourceImage, Image &destinationImage)
 	
 
 	
-	//Here the equalized values will be printed.
+	// Creating an equalized imaged from equalialized_histogram_array
 	for (int i = 0; i < width; i++) {
 		for (int j = 0; j < height; j++) {
 			pixelValue = sourceImage.GetPixelRed(i, j);

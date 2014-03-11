@@ -3,6 +3,14 @@
 #include <ctime>
 #include <iostream>
 
+noiser::noiser() {
+	bt = new BaseTimer();
+}
+
+
+noiser::~noiser() {
+	delete bt;
+}
 
 void noiser::saltAndPepper(Image &sourceImage, Image &destinationImage, int salt) {
 	int HEIGHT = sourceImage.GetHeight();
@@ -23,6 +31,11 @@ void noiser::saltAndPepper(Image &sourceImage, Image &destinationImage, int salt
 	int blueValue = 0;
 
 	int salt_pepper = int(salt);
+
+	// The condition (((HEIGHT * WIDTH) / 100)*salt_pepper) defines on how many pixels we need to add salt&pepper-noise
+	//
+	// int i is a random number between 0 and WIDTH and int j in a random number between 0 and HEIGHT (i is our x coordinate and y our y coordinate)
+	// We save the red, green and blue values in 3 different ints and check if we already changed the pixel, if not make it black or white (depends on condition % 2 if it will be made black or white)
 	while (condition <= (((HEIGHT * WIDTH) / 100)*salt_pepper))  {
 		i = rand() % WIDTH;
 		j = rand() % HEIGHT;

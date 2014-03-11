@@ -4,24 +4,28 @@
 //#define bluePixel 8
 //#define alphaPixel 0
 
+// Default constructor
 ColorChannelToImage::ColorChannelToImage() {
 	bt = new BaseTimer();
 }
 
-
+// Destructor
 ColorChannelToImage::~ColorChannelToImage() {
 	delete bt;
 }
 
+// This method creates an image with only red channel open
 void ColorChannelToImage::CreateRedChannelImage(Image &sourceImage, Image &destinationImage) {
 	bt->reset();
 	bt->start();
 
+	// Check if sourceImage and destinationImage are the samen size, if not return immediately
 	if (sourceImage.GetWidth() != destinationImage.GetWidth() && sourceImage.GetHeight() != destinationImage.GetHeight()) {
 		std::cout << "Error images are not the same size" << std::endl;
 		return;
 	}
 
+	// Get for every pixel the red pixel value and set red pixel with that value and blue and green pixel values with 0
 	for (int y = sourceImage.GetHeight() - 1; y >= 0; y--) {
 		for (int x = sourceImage.GetWidth() - 1; x >= 0; x--) {
 			int redColor = sourceImage.GetPixelRed(x, y);
@@ -37,11 +41,13 @@ void ColorChannelToImage::CreateGreenChannelImage(Image &sourceImage, Image &des
 	bt->reset();
 	bt->start();
 
+	// Check if sourceImage and destinationImage are the samen size, if not return immediately
 	if (sourceImage.GetWidth() != destinationImage.GetWidth() && sourceImage.GetHeight() != destinationImage.GetHeight()) {
 		std::cout << "Error images are not the same size" << std::endl;
 		return;
 	}
 
+	// Get for every pixel the green pixel value and set green pixel with that value and blue and red pixel values with 0
 	for (int y = sourceImage.GetHeight() - 1; y >= 0; y--) {
 		for (int x = sourceImage.GetWidth() - 1; x >= 0; x--) {
 			int greenColor = sourceImage.GetPixelGreen(x, y);
@@ -57,11 +63,13 @@ void ColorChannelToImage::CreateBlueChannelImage(Image &sourceImage, Image &dest
 	bt->reset();
 	bt->start();
 
+	// Check if sourceImage and destinationImage are the samen size, if not return immediately
 	if (sourceImage.GetWidth() != destinationImage.GetWidth() && sourceImage.GetHeight() != destinationImage.GetHeight()) {
 		std::cout << "Error images are not the same size" << std::endl;
 		return;
 	}
 
+	// Get for every pixel the blue pixel value and set blue pixel with that value and green and red pixel values with 0
 	for (int y = sourceImage.GetHeight() - 1; y >= 0; y--) {
 		for (int x = sourceImage.GetWidth() - 1; x >= 0; x--) {
 			int blueColor = sourceImage.GetPixelBlue(x, y);

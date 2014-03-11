@@ -1,15 +1,18 @@
 #include "Histogram.h"
 
-//AUTHOR Bryan Baan & Chanan van Ooijen
 using namespace std;
+
+// Default constructor
 Histogram::Histogram() {
 	bt = new BaseTimer();
 }
 
+// destructor
 Histogram::~Histogram() {
 	delete bt;
 }
 
+// Creates 3 histograms (1 for every color channel) with an binnumber (which is variable)
 void Histogram::CreateNormalizedHistogramCOLOR(Image &sourceImage, int binnr) {
 	int HEIGHT = sourceImage.GetHeight();
 	int WIDTH = sourceImage.GetWidth();
@@ -34,6 +37,8 @@ void Histogram::CreateNormalizedHistogramCOLOR(Image &sourceImage, int binnr) {
 	histogramGreen.open("../Histogrammen/histogram_GREEN.csv", ios::out);
 	histogramBlue.open("../Histogrammen/histogram_BLUE.csv", ios::out);
 
+	// The following for lusses are for making a csv per color channel (red, green and blue)
+
 	for (int i = 0; i < binnr; i++){
 		redArray[i] = 0;
 		greenArray[i] = 0;
@@ -41,25 +46,19 @@ void Histogram::CreateNormalizedHistogramCOLOR(Image &sourceImage, int binnr) {
 	}
 
 	for (int i = 0; i < WIDTH; i++) {
-		//cout << WIDTH << endl;
 		for (int j = 0; j < HEIGHT; j++) {
-			//cout << HEIGHT << endl;
 			red = sourceImage.GetPixelRed(i, j);
 			redArray[(int)((red * binnr) / 256)] ++;
 		}
 	}
 	for (int i = 0; i < WIDTH; i++) {
-		//cout << WIDTH << endl;
 		for (int j = 0; j < HEIGHT; j++) {
-			//cout << HEIGHT << endl;
 			blue = sourceImage.GetPixelBlue(i, j);
 			blueArray[(int)((blue * binnr) / 256)] ++;
 		}
 	}
 	for (int i = 0; i < WIDTH; i++) {
-		//cout << WIDTH << endl;
 		for (int j = 0; j < HEIGHT; j++) {
-			//cout << HEIGHT << endl;
 			green = sourceImage.GetPixelGreen(i, j);
 			greenArray[(int)((green * binnr) / 256)] ++;
 		}
@@ -83,6 +82,7 @@ void Histogram::CreateNormalizedHistogramCOLOR(Image &sourceImage, int binnr) {
 	}
 }
 
+// Create a histogram (based on gray values) with an binnumber (which is variable)
 void Histogram::CreateNormalizedHistogramGRAY(Image &sourceImage, int binnr) {
 	int HEIGHT = sourceImage.GetHeight();
 	int WIDTH = sourceImage.GetWidth();
@@ -104,10 +104,10 @@ void Histogram::CreateNormalizedHistogramGRAY(Image &sourceImage, int binnr) {
 		grayArray[i] = 0;
 	}
 
+	// The following for lusses are for making a csv (bases on gray value)
+	
 	for (int i = 0; i < WIDTH; i++) {
-		//cout << WIDTH << endl;
 		for (int j = 0; j < HEIGHT; j++) {
-			//cout << HEIGHT << endl;
 			red = sourceImage.GetPixelRed(i, j);
 			grayArray[(int)((red * binnr) / 256)] ++;
 		}

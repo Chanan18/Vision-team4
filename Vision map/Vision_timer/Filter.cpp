@@ -20,14 +20,13 @@ void Filter::CreateMedianFilterImage(Image &sourceImage, Image &destinationImage
 	int medianSize = size;
 	int doubleSize = size*size;
 	int halfSize = size / 2;
-	std::cout << halfSize << " " << doubleSize << " " << medianSize << std::endl;
 
 	int median = 0;
 	int temp = 0;
 
 	//Initializing the array, where all the pixelvalues will be stored.
 	int* window;
-	window = (int *)malloc(sizeof(int)* doubleSize); // = arraysize 9
+	window = (int *)malloc(sizeof(int)* doubleSize); 
 
 	//Two for lusses to walk through the image.
 	//The second set of for lusses are for the median filtering.
@@ -94,17 +93,16 @@ void Filter::CreateMinimumFilterImage(Image &sourceImage, Image &destinationImag
 	int medianSize = size;
 	int doubleSize = size*size;
 	int halfSize = size / 2;
-	std::cout << halfSize << " " << doubleSize << " " << medianSize << std::endl;
 
 	int median = 0;
 	int temp = 0;
 
 	//Initializing the array, where all the pixelvalues will be stored.
 	int* window;
-	window = (int *)malloc(sizeof(int)* doubleSize); // = arraysize 9
+	window = (int *)malloc(sizeof(int)* doubleSize); 
 
 	//Two for lusses to walk through the image.
-	//The second set of for lusses are for the median filtering.
+	//The second set of for lusses are for the minimum filtering.
 	int k = 0;
 
 	for (int x = halfSize; x < sourceImage.GetWidth() - halfSize; x++) {
@@ -116,7 +114,7 @@ void Filter::CreateMinimumFilterImage(Image &sourceImage, Image &destinationImag
 				}
 			}
 
-			//This for lus is for the comparison for determination of the median.
+			//This for lus is for the comparison for determination of the minimum.
 			for (int index = 0; index < doubleSize; index++) {
 				temp = window[index];
 				//Biggest value will be the highest number in the array
@@ -159,7 +157,7 @@ void Filter::CreateMinimumFilterImage(Image &sourceImage, Image &destinationImag
 	std::cout << "Time for the Minimum filter function: " << bt->elapsedMicroSeconds() << " Microseconds (" << bt->elapsedMilliSeconds() << "ms)" << std::endl;
 }
 
-//Variable maximum filter method.
+// Variable maximum filter method.
 void Filter::CreateMaximumFilterImage(Image &sourceImage, Image &destinationImage, int size) {
 	//Starting the timer
 	bt->reset();
@@ -169,17 +167,16 @@ void Filter::CreateMaximumFilterImage(Image &sourceImage, Image &destinationImag
 	int medianSize = size;
 	int doubleSize = size*size;
 	int halfSize = size / 2;
-	std::cout << halfSize << " " << doubleSize << " " << medianSize << std::endl;
 
 	int median = 0;
 	int temp = 0;
 
 	//Initializing the array, where all the pixelvalues will be stored.
 	int* window;
-	window = (int *)malloc(sizeof(int)* doubleSize); // = arraysize 9
+	window = (int *)malloc(sizeof(int)* doubleSize); 
 
 	//Two for lusses to walk through the image.
-	//The second set of for lusses are for the median filtering.
+	//The second set of for lusses are for the maximum filtering.
 	int k = 0;
 
 	for (int x = halfSize; x < sourceImage.GetWidth() - halfSize; x++) {

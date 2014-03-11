@@ -14,11 +14,19 @@
 #pragma once
 class noiser
 {
+private:
+	// Define BaseTimer object
+	BaseTimer* bt;
 public:
+	// Default constructor
+	noiser();
 
-	//! This method has parameters an source image, an destination image and a int which represent percentage of salt&pepper-noise
+	// Destructor
+	~noiser();
+
+	// This method has parameters a source image, a destination image and an int which represent percentage of salt&pepper-noise
 	//
-	//! This method will add the given percentage salt&pepper noise on the destination image
+	// This method will add the given percentage salt&pepper noise on the destination image
 	void saltAndPepper(Image &sourceImage, Image &destinationImage, int salt);
 };
 
