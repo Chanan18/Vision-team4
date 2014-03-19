@@ -22,8 +22,8 @@ int main(int argc, char** argv) {
 //	std::string inputName = "TestImage.bmp";
 //	std::string inputName = "Busjes.jpg";
 //	std::string inputName = "BusjesGroot.jpg";
-	std::string inputName = "Knikker.bmp";
-//	std::string inputName = "Waterfall.jpg";
+//	std::string inputName = "meepo.bmp";
+	std::string inputName = "Waterfall.jpg";
 
 	
 
@@ -107,11 +107,11 @@ int main(int argc, char** argv) {
 		
 		Image clusteredGrayImage(originalImage);
 		Cluster c;
-		c.CreateK_MeansGrayImage(originalImage, clusteredGrayImage, 4, 1);
+		c.CreateK_MeansGrayImage(originalImage, clusteredGrayImage, 5, 1);
 		clusteredGrayImage.SaveImageToFile("clusterGRAY_");
 		
 		Image clusteredColorImage(originalImage);
-		c.CreateK_MeansColorImage(originalImage, clusteredColorImage, 5, 25);
+		c.CreateK_MeansColorImage(originalImage, clusteredColorImage, 20, 25);
 		clusteredColorImage.SaveImageToFile("clusterCOLOR_");
 
 		Image thresholdImage(grayImage);

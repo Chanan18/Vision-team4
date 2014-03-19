@@ -31,31 +31,31 @@ void Threshold::CreateThresholdImage(Image &sourceImage, Image &destinationImage
 	int temp = 0;
 	int* window;
 	int index = 0;
-	window = (int *)malloc(sizeof(int)* 121);
-	for (int u = 0; u < 121; u++) {
+	window = (int *)malloc(sizeof(int)* 49);
+	for (int u = 0; u < 49; u++) {
 		window[u] = 0;
 	}
 	
 	//The threshold for every pixel will be retrieved by using an 11x11 Mean filter.
 	//That is also what these for loops are for.
-	for (int x = 5; x < srcWidth - 5; x++)
+	for (int x = 3; x < srcWidth - 3; x++)
 	{
-		for (int y = 5; y < srcHeight - 5; y++)
+		for (int y = 3; y < srcHeight - 3; y++)
 		{
-			for (int newX = (x-5); newX < (x + 5); newX++)
+			for (int newX = (x-3); newX < (x + 3); newX++)
 			{
-				for (int newY = (y-5); newY < (y + 5); newY++)
+				for (int newY = (y-3); newY < (y + 3); newY++)
 				{
 					window[index] = sourceImage.GetPixelRed(newX, newY);
 					index++;
 				}
 			}
 			//Accumulating all the values of the mean filter (11x11)
-			for (int i = 0; i < 121; i++) {
+			for (int i = 0; i < 49; i++) {
 				temp += window[i];
 			}
 			//determinating the threshold
-			temp = temp / 121;
+			temp = temp / 49;
 
 			int threshold = temp;
 			//applying the threshold to the current pixel.
