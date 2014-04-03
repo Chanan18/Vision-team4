@@ -83,6 +83,7 @@
     <ClCompile Include="Filter.cpp" />
     <ClCompile Include="noiser.cpp" />
     <ClCompile Include="Threshold.cpp" />
+    <ClCompile Include="Translations.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cluster.h" />
@@ -94,6 +95,7 @@
     <ClInclude Include="Filter.h" />
     <ClInclude Include="noiser.h" />
     <ClInclude Include="Threshold.h" />
+    <ClInclude Include="Translations.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

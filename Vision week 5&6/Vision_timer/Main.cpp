@@ -11,6 +11,7 @@
 #include "noiser.h"
 #include "Cluster.h"
 #include "Threshold.h"
+#include "Translations.h"
 
 int main(int argc, char** argv) {
 	/*=========================     Program parameters     =========================*/
@@ -105,19 +106,27 @@ int main(int argc, char** argv) {
 		filter.CreateMaximumFilterImage(saltAndPepperImage, maximumFilterImage, 3);
 		maximumFilterImage.SaveImageToFile("maximum_");
 		
-		Image clusteredGrayImage(originalImage);
-		Cluster c;
-		c.CreateK_MeansGrayImage(originalImage, clusteredGrayImage, 4, 1);
-		clusteredGrayImage.SaveImageToFile("clusterGRAY_");
+		//Image clusteredGrayImage(originalImage);
+		//Cluster c;
+		//c.CreateK_MeansGrayImage(originalImage, clusteredGrayImage, 4, 1);
+		//clusteredGrayImage.SaveImageToFile("clusterGRAY_");
 		
-		Image clusteredColorImage(originalImage);
-		c.CreateK_MeansColorImage(originalImage, clusteredColorImage, 5, 25);
-		clusteredColorImage.SaveImageToFile("clusterCOLOR_");
+		//Image clusteredColorImage(originalImage);
+		//c.CreateK_MeansColorImage(originalImage, clusteredColorImage, 5, 25);
+		//clusteredColorImage.SaveImageToFile("clusterCOLOR_");
 
 		Image thresholdImage(grayImage);
 		Threshold t;
 		t.CreateThresholdImage(grayImage, thresholdImage);
 		thresholdImage.SaveImageToFile("threshold_");
+
+		Image movedImage(grayImage);
+		Image turnedImage(grayImage);
+		Translations trans;
+		trans.MoveImage(grayImage, movedImage, 30, 30);
+		movedImage.SaveImageToFile("moved");
+		trans.TurnImage(grayImage, turnedImage, 45);
+		turnedImage.SaveImageToFile("turned");
 	}
 
 	//Save the original image
